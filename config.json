@@ -1,0 +1,9 @@
+[
+    {"tags": 
+    "Greetings",
+    "patterns": ["hi","hello","hey","sup","what's up","yow", "greetings", "heya!"],
+    "response": ["Hello!", "Hi!", "yow!"],
+    "single_response": true,
+    "required_words": []
+    }
+]
