@@ -19,6 +19,7 @@ def config_w(config):
     return
 def save(tags,patterns,response,single_response,requird_words):
     response_storage=[]
+    patterns_storage=[]
     patterns=patterns.split()
     requird_words=requird_words.split()
     response_data=response.split()
@@ -28,9 +29,14 @@ def save(tags,patterns,response,single_response,requird_words):
             response_storage.append(word.replace('_', ' '))
         else:
             response_storage.append(word)
+    for word in patterns:
+        if "_" in word:
+            patterns_storage.append(word.replace('_', ' '))
+        else:
+            patterns_storage.append(word)
             
             
-    save_json(tags,patterns,response_storage,single_response,requird_words)
+    save_json(tags,patterns_storage,response_storage,single_response,requird_words)
 def save_json(tags,patterns,response,single_response,requird_words):
     config=openconfig()
     new=True
