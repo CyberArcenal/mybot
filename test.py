@@ -1,9 +1,9 @@
-import mybotv2
+import mybot
 
 
 
 
 while True:
     a=input("You:")
-    b=mybotv2.get_response(a)
+    b=mybot.get_response(a)
     print(f"Bot: {b}")
