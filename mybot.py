@@ -25,8 +25,8 @@ def probability_test(message, word_patterns, single_response=False, required_wor
 
 
 def check_all_messages(message):
-    config=json.loads(open('config.json', 'r').read())
-    unknown_response=json.loads(open('unknown.json', 'r').read())
+    config=json.loads(open('data/config.json', 'r').read())
+    unknown_response=json.loads(open('data/unknown.json', 'r').read())
     wordlist = {}
     def response(b_response, list_of_words, single_response=False, required_words=[]):
         nonlocal wordlist
@@ -45,7 +45,7 @@ def check_all_messages(message):
 
     match = max(wordlist, key=wordlist.get)
     #print(wordlist)
-    #print(f'Best match = {match} | Score: {wordlist[match]}')
+    print(f'Best match = {match} | Score: {wordlist[match]}')
 
     return random.choice(unknown_response) if wordlist[match] < 1 else match
 

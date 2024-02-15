@@ -1,0 +1,18 @@
+{
+    "Greetings": [
+        {
+        "patterns": ["kamusta"],
+        "response": ["okey lang"],
+        "single_response": true,
+        "required_words": []
+    }
+],
+    "Goodbye": [
+        {
+        "patterns": ["bye"],
+        "response": ["ingat"],
+        "single_response": true,
+        "required_words": []
+    }
+]
+}
