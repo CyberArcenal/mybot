@@ -45,7 +45,8 @@ def check_all_messages(message):
             required_words=reply['required_words']
         except:
             required_words=[]
-        response(random.choice(reply['response']), reply['patterns'], bool(reply['single_response']), required_words)
+        random_reply=random.choice(reply['response'])
+        response(random_reply, reply['patterns'], bool(reply['single_response']), required_words)
 
 
  
