@@ -1,18 +1,1 @@
-{
-    "Greetings": [
-        {
-        "patterns": ["kamusta"],
-        "response": ["okey lang"],
-        "single_response": true,
-        "required_words": []
-    }
-],
-    "Goodbye": [
-        {
-        "patterns": ["bye"],
-        "response": ["ingat"],
-        "single_response": true,
-        "required_words": []
-    }
-]
-}
+{"Greetings": [{"patterns": ["hi"], "response": ["hello", "hello?", "hello po", "hi po", "kamusta", "hi?"], "single_response": true, "required_words": []}], "Goodbye": [{"patterns": ["bye"], "response": ["ingat"], "single_response": true, "required_words": []}], "General Inquiries": [], "Help": [{"patterns": ["hi"], "response": ["hello how can i help you?"], "single_response": true, "required_words": []}]}
