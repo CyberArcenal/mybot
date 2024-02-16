@@ -84,18 +84,40 @@ def save(tags: str, patterns: list, response: list, single_response: bool, requi
     required_words = [word.replace('_', ' ') if "_" in word else word for word in required_words]
     response_storage = [word.replace('_', ' ') if "_" in word else word for word in response]
     patterns_storage = [word.replace('_', ' ') if "_" in word else word for word in patterns_storage]
-    save_json(tags, patterns_storage, response_storage, single_response, required_words)
-
-def save_json(tags, patterns, response, single_response, required_words):
+    save_json(tags=tags,
+    patterns=patterns_storage,
+    response=response_storage,
+    single_response=single_response,
+    required_words=required_words)
+    
+def is_new(patterns, tags):
     config = openconfig()
-    is_new = tags not in config
-
-    if is_new:
+    for i in config.get(tags, []):
+        if set(i['patterns']).intersection(patterns):
+            return False
+    return True
+    
+def save_json(tags, patterns, response, single_response, required_words):
+    new = is_new(patterns=patterns, tags=tags)
+    if new:
         save_new(tags, patterns, response, single_response, required_words)
     else:
         save_already(tags, patterns, response, single_response, required_words)
 
-def save_already(tags: str, patterns: list, response: set, single_response: bool, required_words: list):
+def add_configuration():
+    pass
+def extend_configuration(tags:str, patterns:list, response:list, single_response:bool, required_words:list):
+    config=openconfig()
+    configuration=config.get(tags, [])
+    for i in configuration:
+        if set(i['patterns']).intersection(patterns):
+            i['response'].extend(response)
+            i['single_response'] = single_response
+            i['required_words'].extend(required_words)
+    config_w(config)
+    return
+
+def save_already(tags: str, patterns: list[str], response: list[str], single_response: bool, required_words: list):
     config = openconfig()
     configuration = config.get(tags, {"patterns": [], "response": [], "required_words": [], "single_response": single_response})
     configuration['patterns'].extend(patterns)
@@ -103,7 +125,7 @@ def save_already(tags: str, patterns: list, response: set, single_response: bool
     configuration['required_words'].extend(required_words)
     configuration['single_response'] = single_response
 
-    config[tags] = configuration
+    config[tags].append(configuration)
     config_w(config)
     print("Existing configuration updated.")
 
