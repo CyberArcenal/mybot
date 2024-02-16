@@ -26,9 +26,8 @@ def probability_test(message, word_patterns, single_response=False, required_wor
 def get_all_data():
     data = []
     config:dict=json.loads(open('data/config.json', 'r').read())
-    for x in config.items():
-        data.extend(x)
-    print(data)
+    for key, value in config.items():
+        data.extend(value)
     return data
 
 def check_all_messages(message):
@@ -47,9 +46,6 @@ def check_all_messages(message):
             required_words=[]
         random_reply=random.choice(reply['response'])
         response(random_reply, reply['patterns'], bool(reply['single_response']), required_words)
-
-
- 
 
     match = max(wordlist, key=wordlist.get)
     print(wordlist)
